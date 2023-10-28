@@ -2,7 +2,7 @@
 #include "s21_matrix_oop.h"
 
 S21Matrix::S21Matrix(int rows, int cols) : rows_(rows), cols_(cols) {
-    rows_ = 0, cols_ = 0;
+    CreateMatrix(); 
 }
 
 bool S21Matrix::EqMatrix(const S21Matrix &other) {
@@ -33,15 +33,26 @@ void S21Matrix::MulNumber(const double num) {
     }
 }
 
-void S21Matrix::MulMatrix(const S21Matrix &other) {
-    ExceptionSizeMatrix(other);
-    ExceptionOMatrix(other);
+// void S21Matrix::MulMatrix(const S21Matrix &other) {
+//     ExceptionSizeMatrix(other);
+//     ExceptionOMatrix(other);
+//     S21Matrix tempM((*this).rows_, other.cols_);
+//     for (int i = 0; i < tempM.rows_; i++) {
+//         for (int j = 0; j < tempM.cols_; j++) {
+//             for (int k = 0; k < cols_; k++) {
+//                 tempM.matrix_[i][j] += matrix_[i][k] * other.matrix_[k][j];
+//             }
+//         }
+//     }
+//     *this = std::move(tempM);
     
-}
+// }
+
 //
-//S21Matrix S21Matrix::Transpose() {
-//    return S21Matrix();
-//}
+S21Matrix S21Matrix::Transpose() {
+    
+   return S21Matrix();
+}
 //
 //S21Matrix S21Matrix::CalcComplements() {
 //    return S21Matrix();
@@ -98,7 +109,6 @@ void S21Matrix::ExceptionOMatrix(const S21Matrix matrix) {
 }
 
 S21Matrix S21Matrix::Transpose() {
-
     return S21Matrix();
 }
 
@@ -107,4 +117,31 @@ void S21Matrix::RemoveMatrix() {
         delete[] matrix_[i];
     }
     delete[] matrix_;
+    SetNull();
+}
+
+void S21Matrix::SetNull() {
+    matrix_ = nullptr;
+    rows_ = 0;
+    cols_ = 0;
+}
+
+void S21Matrix::CreateMatrix(){
+    matrix_ = new double*[rows_]();
+    for (size_t i = 0; i < rows_; i++)
+    {
+        (*this).matrix_[i] = new double[cols_]();
+    }
+    
+}
+
+void S21Matrix::CopyMatrix(const S21Matrix &other) {
+    if (this != &other){
+        CreateMatrix();
+        for (int i = 0; i < rows_; ++i) {
+            for (int j = 0; j < cols_; ++j) {
+                (*this).matrix_[i][j] = other.matrix_[i][j];
+            }
+        }
+    }
 }

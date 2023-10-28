@@ -1,3 +1,0 @@
-/home/emil/CPP1_s21_matrixplus-1/cmake-build-debug/CMakeFiles/CPP1_s21_matrixplus_1.dir
-/home/emil/CPP1_s21_matrixplus-1/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/emil/CPP1_s21_matrixplus-1/cmake-build-debug/CMakeFiles/rebuild_cache.dir
